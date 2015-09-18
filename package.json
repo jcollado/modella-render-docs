@@ -6,6 +6,7 @@
   "scripts": {
     "cover": "istanbul cover test.js",
     "coveralls": "istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "lint": "jshint *.js",
     "postversion": "git push && git push --tags",
     "preversion": "npm test",
     "test": "tape test.js"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "coveralls": "^2.11.4",
     "istanbul": "^0.3.20",
+    "jshint": "^2.8.0",
     "modella": "^0.2.14",
     "tape": "^4.2.0"
   },
