@@ -1,4 +1,7 @@
 node_modules
 
+# coverage report directory
+coverage
+
 # vim swap files
 *.swp
