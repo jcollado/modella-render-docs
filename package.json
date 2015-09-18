@@ -4,6 +4,7 @@
   "description": "Render documentation from a modella model",
   "main": "index.js",
   "scripts": {
+    "cover": "istanbul cover test.js",
     "test": "tape test.js"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "author": "Javier Collado <jcollado@nowsecure.com>",
   "license": "MIT",
   "devDependencies": {
+    "istanbul": "^0.3.20",
     "modella": "^0.2.14",
     "tape": "^4.2.0"
   }
