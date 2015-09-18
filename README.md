@@ -11,7 +11,8 @@ Render documentation from a [modella](https://www.npmjs.com/package/modella) mod
 ## Example
 
     var modella = require('modella');
-    var render = require('modella-render-docs');
+    var ModelRenderer = require('modella-render-docs');
 
-    var model = model('Model');
-    console.log(render(model));
+    var model = modella('Model');
+    var renderer = new ModelRenderer(model);
+    console.log(renderer.toString());
