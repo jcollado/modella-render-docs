@@ -6,6 +6,8 @@
   "scripts": {
     "cover": "istanbul cover test.js",
     "coveralls": "istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "postversion": "git push && git push --tags",
+    "preversion": "npm test",
     "test": "tape test.js"
   },
   "repository": {
