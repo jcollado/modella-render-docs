@@ -8,6 +8,7 @@
     "coveralls": "istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "lint": "jshint *.js",
     "postversion": "git push && git push --tags",
+    "pretest": "npm run lint",
     "preversion": "npm test",
     "test": "tape test.js"
   },
