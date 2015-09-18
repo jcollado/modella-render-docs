@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cover": "istanbul cover test.js",
+    "coveralls": "istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "test": "tape test.js"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "author": "Javier Collado <jcollado@nowsecure.com>",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^2.11.4",
     "istanbul": "^0.3.20",
     "modella": "^0.2.14",
     "tape": "^4.2.0"
