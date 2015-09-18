@@ -21,7 +21,7 @@ test('Model with attributes', function(t) {
 
   t.equal(
       render(model),
-      'MyModel:\n- a\n- b\n- c\n');
+      modelName + ':\n- a\n- b\n- c\n');
   t.end();
 });
 
@@ -31,6 +31,6 @@ test('Model with ID key', function(t) {
   model.attr('id');
   t.equal(
       render(model),
-      'MyModel:\n- id (primaryKey)\n');
+      modelName + ':\n- id (primaryKey)\n');
   t.end();
 });
