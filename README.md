@@ -5,3 +5,11 @@
 [![Dependency Status](https://david-dm.org/jcollado/modella-render-docs.svg)](https://david-dm.org/jcollado/modella-render-docs)
 
 Render documentation from a modella model
+
+## Example
+
+    var modella = require('modella');
+    var render = require('modella-render-docs');
+
+    var model = model('Model');
+    console.log(render(model));
