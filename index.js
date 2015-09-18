@@ -2,7 +2,6 @@ var _ = require('lodash');
 
 module.exports = function render(model) {
   var output = '';
-  var attr;
 
   output += model.modelName;
 
