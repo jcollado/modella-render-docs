@@ -1,3 +1,5 @@
+'use strict';
+
 var modella = require('modella');
 var test = require('tape');
 
