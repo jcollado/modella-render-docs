@@ -1,0 +1,23 @@
+{
+  "name": "modella-render-docs",
+  "version": "0.0.0",
+  "description": "Render documentation from a modella model",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcollado/modella-render-docs"
+  },
+  "keywords": [
+    "modella",
+    "render",
+    "documentation"
+  ],
+  "author": "Javier Collado <jcollado@nowsecure.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.2.0"
+  }
+}
