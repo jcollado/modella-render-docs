@@ -18,6 +18,7 @@
   "author": "Javier Collado <jcollado@nowsecure.com>",
   "license": "MIT",
   "devDependencies": {
+    "modella": "^0.2.14",
     "tape": "^4.2.0"
   }
 }
