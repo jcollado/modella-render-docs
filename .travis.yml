@@ -1,6 +1,14 @@
 language: node_js
 node_js:
-  - node
-  - iojs
+- node
+- iojs
 after_success:
-  - npm run coveralls
+- npm run coveralls
+deploy:
+  provider: npm
+  email: javier.collado@gmail.com
+  api_key:
+    secure: vyYQC/p2e9s6emMt6f+2PfQ+TMQT5W1x+L3ynwviYkXDl/mHecOWD2AMIANQRgwELjCdz3445EXvaOMb2llj1vxUmhNaRfN8p2lwRZcwbRifumzdz+zKrt7EX9tpmFiCm/apecqu9oIdN8uJxHMd0WkbqXOFI8b9W0JsGubPxFvH8PG72przR7hHMGCO8WvseEbIXRNGLl/tQZUNIYslPU6JNqCyIG9QyzLiMCf4/M2wbcNBcpxye/2BWQOGuaTsji7SWPxQQCY44qh0EKiHZrfWNs7PdJDH/2ksea/8bDH9jQhjmLFgnroSLccjwkokLUncV+XnJctORtF7vZfEDCDC7snK7iAPT28CucH2jabIGkCIM/lJ7rBLB69ScwDM6pIsGYFE8ARII1719avEk7ZREuvY7tq2aTWGUpyDUVay0aVQV8ACz6idWoEua1IElpwKjD2855+6XUeUg2et8q/WUPRtM0db4p9PUWURDfQnTFhGY5wWw2nwD+002ADJrDUwaBhk0aQFBzX+xY9sMG+HDKqf9eVysRs1IPvvvhMWFCdBtG47FdQNMqNx0+ElRDD20nFzdSpEdBD2F1N/5DWV4sJUtUdYOWKWoztTTGBE2Wfp9KzfvXoxI0+x+Wd0vJv+FOVJtyXA3xYSdrxZNxEJJKI2XNy3ksJ+/Y+a6BU=
+  on:
+    tags: true
+    repo: jcollado/modella-render-docs
