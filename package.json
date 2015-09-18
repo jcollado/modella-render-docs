@@ -19,7 +19,7 @@
     "render",
     "documentation"
   ],
-  "author": "Javier Collado <jcollado@nowsecure.com>",
+  "author": "Javier Collado <javier.collado@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^2.11.4",
