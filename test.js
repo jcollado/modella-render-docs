@@ -80,7 +80,7 @@ test('Render model with attributes to string', function(t) {
 
   t.equal(
       renderer.toString(),
-      modelName + ':\n- a\n- b\n- c\n');
+      modelName + ':\n- a\n- b\n- c');
   t.end();
 });
 
@@ -92,6 +92,6 @@ test('Render model with ID key to string', function(t) {
   renderer = new ModelRenderer(model);
   t.equal(
       renderer.toString(),
-      modelName + ':\n- id (primaryKey)\n');
+      modelName + ':\n- id (primaryKey)');
   t.end();
 });

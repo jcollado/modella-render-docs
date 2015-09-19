@@ -1,10 +1,19 @@
 'use strict';
 
-var _ = require('lodash');
+var R = require('ramda');
+var isEmptyObj = R.pipe(R.keys, R.isEmpty);
 
 function ModelRenderer(model) {
   this.modelName = model.modelName;
   this.attrs = model.attrs;
+}
+
+function attrToString(key, value) {
+  var output = '- ' + key;
+  if (R.has('primaryKey', value)) {
+    output += ' (primaryKey)';
+  }
+  return output;
 }
 
 ModelRenderer.prototype.toJSON = function toJSON() {
@@ -14,16 +23,9 @@ ModelRenderer.prototype.toJSON = function toJSON() {
 ModelRenderer.prototype.toString = function toString() {
     var output = this.modelName;
 
-    if (!_.isEmpty(this.attrs)) {
+    if (!isEmptyObj(this.attrs)) {
       output += ':\n';
-
-      _.forOwn(this.attrs, function(value, key) {
-        output += '- ' + key;
-        if (_.has(value, 'primaryKey')) {
-          output += ' (primaryKey)';
-        }
-        output += '\n';
-      });
+      output += R.join('\n', R.map(R.apply(attrToString), R.toPairs(this.attrs)));
     }
     return output;
 };
