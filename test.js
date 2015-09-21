@@ -1,36 +1,50 @@
+/* jshint mocha:true */
 'use strict';
 
+var expect = require('chai').expect;
 var modella = require('modella');
-var test = require('tape');
 
 var ModelRenderer = require('./');
 
 var modelName = 'MyModel';
 
-test('Model with no attributes', function(t) {
-  var model = modella(modelName);
-  var renderer = new ModelRenderer(model);
-  t.deepEqual(
-      renderer.toJSON(),
+describe('Model without attributes', function() {
+  var model;
+  var renderer;
+
+  beforeEach('Create renderer', function() {
+    model = modella(modelName);
+    renderer = new ModelRenderer(model);
+  });
+
+  it('as json', function() {
+    expect(renderer.toJSON()).to.deep.equal(
       {
         modelName: modelName,
         attrs: {}
       });
-  t.end();
+  });
+
+  it('as string', function() {
+    expect(renderer.toString()).to.equal(modelName);
+  });
 });
 
-test('Model with attributes', function(t) {
+describe('Model with attributes', function() {
   var attributes = ['a', 'b', 'c'];
-  var model = modella(modelName);
+  var model;
   var renderer;
 
-  attributes.forEach(function(attr) {
-    model.attr(attr);
+  beforeEach('Create renderer', function() {
+    model = modella(modelName);
+    renderer = new ModelRenderer(model);
+    attributes.forEach(function(attr) {
+      model.attr(attr);
+    });
   });
-  renderer = new ModelRenderer(model);
 
-  t.deepEqual(
-      renderer.toJSON(),
+  it('as json', function() {
+    expect(renderer.toJSON()).to.deep.equal(
       {
         modelName: modelName,
         attrs: {
@@ -39,59 +53,37 @@ test('Model with attributes', function(t) {
           c: {}
         }
       });
-  t.end();
+  });
+
+  it('as string', function() {
+    var expected = modelName + ':\n- a\n- b\n- c';
+    expect(renderer.toString()).to.equal(expected);
+  });
 });
 
-test('Model with ID key', function(t) {
-  var model = modella(modelName);
+describe('Model with ID key', function() {
+  var model;
   var renderer;
 
-  model.attr('id');
-  renderer = new ModelRenderer(model);
-  t.deepEqual(
-      renderer.toJSON(),
+  beforeEach('Create renderer', function() {
+    model = modella(modelName).attr('id');
+    renderer = new ModelRenderer(model);
+  });
+
+  it('as json', function() {
+    expect(renderer.toJSON()).to.deep.equal(
       {
         modelName: modelName,
         attrs: {
           id: {
             primaryKey: true
-          }
+          },
         }
       });
-  t.end();
-});
-
-test('Render model with no attributes to string', function(t) {
-  var model = modella(modelName);
-  var renderer = new ModelRenderer(model);
-  t.equal(renderer.toString(), modelName);
-  t.end();
-});
-
-test('Render model with attributes to string', function(t) {
-  var attributes = ['a', 'b', 'c'];
-  var model = modella(modelName);
-  var renderer;
-
-  attributes.forEach(function(attr) {
-    model.attr(attr);
   });
-  renderer = new ModelRenderer(model);
 
-  t.equal(
-      renderer.toString(),
-      modelName + ':\n- a\n- b\n- c');
-  t.end();
-});
-
-test('Render model with ID key to string', function(t) {
-  var model = modella(modelName);
-  var renderer;
-
-  model.attr('id');
-  renderer = new ModelRenderer(model);
-  t.equal(
-      renderer.toString(),
-      modelName + ':\n- id (primaryKey)');
-  t.end();
+  it('as string', function() {
+    var expected = modelName + ':\n- id (primaryKey)';
+    expect(renderer.toString()).to.equal(expected);
+  });
 });

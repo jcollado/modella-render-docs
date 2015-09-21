@@ -10,7 +10,8 @@
     "postversion": "git push && git push --tags",
     "pretest": "npm run lint",
     "preversion": "npm test",
-    "test": "tape test.js"
+    "test": "mocha",
+    "test:watch": "mocha -w"
   },
   "repository": {
     "type": "git",
@@ -24,12 +25,13 @@
   "author": "Javier Collado <javier.collado@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^3.3.0",
     "coveralls": "^2.11.4",
     "ghooks": "^0.3.2",
     "istanbul": "^0.3.20",
     "jshint": "^2.8.0",
-    "modella": "^0.2.14",
-    "tape": "^4.2.0"
+    "mocha": "^2.3.3",
+    "modella": "^0.2.14"
   },
   "dependencies": {
     "ramda": "^0.17.1"
