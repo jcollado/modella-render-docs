@@ -4,8 +4,8 @@
   "description": "Render documentation from a modella model",
   "main": "index.js",
   "scripts": {
-    "cover": "istanbul cover test.js",
-    "coveralls": "istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "istanbul cover _mocha --report lcovonly && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "lint": "jshint *.js",
     "postversion": "git push && git push --tags",
     "pretest": "npm run lint",
