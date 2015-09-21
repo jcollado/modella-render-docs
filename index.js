@@ -17,7 +17,7 @@ function attrToString(key, value) {
 }
 
 ModelRenderer.prototype.toJSON = function toJSON() {
-  return this;
+  return R.mapObj(R.identity, this);
 };
 
 ModelRenderer.prototype.toString = function toString() {
