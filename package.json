@@ -25,6 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^2.11.4",
+    "ghooks": "^0.3.2",
     "istanbul": "^0.3.20",
     "jshint": "^2.8.0",
     "modella": "^0.2.14",
@@ -32,5 +33,10 @@
   },
   "dependencies": {
     "ramda": "^0.17.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm test"
+    }
   }
 }
