@@ -8,12 +8,23 @@ function ModelRenderer(model) {
   this.attrs = model.attrs;
 }
 
-function attrToString(key, value) {
-  var output = '- ' + key;
-  if (R.has('primaryKey', value)) {
-    output += ' (primaryKey)';
+function attrToString(attrName, opts) {
+  var attrOutput = '- ' + attrName;
+  var optsOutput = R.join(', ', R.map(R.apply(optToString), R.toPairs(opts)));
+
+  if (optsOutput) {
+    attrOutput += ' (' + optsOutput + ')';
   }
-  return output;
+  return attrOutput;
+}
+
+function optToString(opt, value) {
+  if (opt === 'primaryKey') {
+    return 'primaryKey';
+  }
+  if (opt === 'description') {
+    return 'description: ' + value;
+  }
 }
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {

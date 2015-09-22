@@ -85,7 +85,7 @@ describe('ModelRenderer', function() {
     });
   });
 
-  describe('Model with ID key', function() {
+  describe('Model with ID attribute', function() {
     var model;
     var renderer;
 
@@ -108,6 +108,41 @@ describe('ModelRenderer', function() {
 
     it('as string', function() {
       var expected = modelName + ':\n- id (primaryKey)';
+      expect(renderer.toString()).to.equal(expected);
+    });
+  });
+
+  describe('Model with attributes and description', function() {
+    var model;
+    var renderer;
+
+    beforeEach('Create renderer', function() {
+      model = modella(modelName)
+        .attr('a', {'description': 'attribute a'})
+        .attr('b', {'description': 'attribute b'});
+      renderer = new ModelRenderer(model);
+    });
+
+    it('as metadata', function() {
+      var expected = {
+        modelName: modelName,
+        attrs: {
+          a: {
+            description: 'attribute a'
+          },
+          b: {
+            description: 'attribute b'
+          }
+        }
+      };
+      expect(renderer.metadata).to.deep.equal(expected);
+    });
+
+    it('as string', function() {
+      var expected = (
+          modelName +
+          ':\n- a (description: attribute a)\n- b (description: attribute b)'
+          );
       expect(renderer.toString()).to.equal(expected);
     });
   });
