@@ -24,7 +24,7 @@ Object.defineProperty(ModelRenderer.prototype, 'metadata', {
 });
 
 ModelRenderer.prototype.toJSON = function toJSON() {
-  return R.mapObj(R.identity, this);
+  return JSON.stringify(this.metadata);
 };
 
 ModelRenderer.prototype.toString = function toString() {
