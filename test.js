@@ -18,11 +18,14 @@ describe('Model without attributes', function() {
   });
 
   it('as json', function() {
-    expect(renderer.toJSON()).to.deep.equal(
-      {
-        modelName: modelName,
-        attrs: {}
-      });
+    var json = renderer.toJSON();
+    var expected = {
+      modelName: modelName,
+      attrs: {}
+    };
+
+    expect(json).to.deep.equal(expected);
+    expect(JSON.stringify).to.not.throw();
   });
 
   it('as string', function() {
@@ -44,15 +47,17 @@ describe('Model with attributes', function() {
   });
 
   it('as json', function() {
-    expect(renderer.toJSON()).to.deep.equal(
-      {
-        modelName: modelName,
-        attrs: {
-          a: {},
-          b: {},
-          c: {}
-        }
-      });
+    var json = renderer.toJSON();
+    var expected = {
+      modelName: modelName,
+      attrs: {
+        a: {},
+        b: {},
+        c: {}
+      }
+    };
+    expect(json).to.deep.equal(expected);
+    expect(JSON.stringify).to.not.throw();
   });
 
   it('as string', function() {
@@ -71,15 +76,17 @@ describe('Model with ID key', function() {
   });
 
   it('as json', function() {
-    expect(renderer.toJSON()).to.deep.equal(
-      {
-        modelName: modelName,
-        attrs: {
-          id: {
-            primaryKey: true
-          },
-        }
-      });
+    var json = renderer.toJSON();
+    var expected = {
+      modelName: modelName,
+      attrs: {
+        id: {
+          primaryKey: true
+        },
+      }
+    };
+    expect(json).to.deep.equal(expected);
+    expect(JSON.stringify).to.not.throw();
   });
 
   it('as string', function() {
