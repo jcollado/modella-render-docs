@@ -31,7 +31,9 @@
     "istanbul": "^0.3.20",
     "jshint": "^2.8.0",
     "mocha": "^2.3.3",
-    "modella": "^0.2.14"
+    "modella": "^0.2.14",
+    "sinon": "^1.17.0",
+    "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "ramda": "^0.17.1"
