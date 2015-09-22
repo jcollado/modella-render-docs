@@ -16,6 +16,13 @@ function attrToString(key, value) {
   return output;
 }
 
+Object.defineProperty(ModelRenderer.prototype, 'metadata', {
+  get: function () {
+    return R.mapObj(R.identity, this);
+  },
+  enumerable: true
+});
+
 ModelRenderer.prototype.toJSON = function toJSON() {
   return R.mapObj(R.identity, this);
 };
