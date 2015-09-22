@@ -17,15 +17,13 @@ describe('Model without attributes', function() {
     renderer = new ModelRenderer(model);
   });
 
-  it('as json', function() {
-    var json = renderer.toJSON();
+  it('as metadata', function() {
     var expected = {
       modelName: modelName,
       attrs: {}
     };
 
-    expect(json).to.deep.equal(expected);
-    expect(JSON.stringify).to.not.throw();
+    expect(renderer.metadata).to.deep.equal(expected);
   });
 
   it('as string', function() {
@@ -46,8 +44,7 @@ describe('Model with attributes', function() {
     });
   });
 
-  it('as json', function() {
-    var json = renderer.toJSON();
+  it('as metadata', function() {
     var expected = {
       modelName: modelName,
       attrs: {
@@ -56,8 +53,7 @@ describe('Model with attributes', function() {
         c: {}
       }
     };
-    expect(json).to.deep.equal(expected);
-    expect(JSON.stringify).to.not.throw();
+    expect(renderer.metadata).to.deep.equal(expected);
   });
 
   it('as string', function() {
@@ -75,8 +71,7 @@ describe('Model with ID key', function() {
     renderer = new ModelRenderer(model);
   });
 
-  it('as json', function() {
-    var json = renderer.toJSON();
+  it('as metadata', function() {
     var expected = {
       modelName: modelName,
       attrs: {
@@ -85,8 +80,7 @@ describe('Model with ID key', function() {
         },
       }
     };
-    expect(json).to.deep.equal(expected);
-    expect(JSON.stringify).to.not.throw();
+    expect(renderer.metadata).to.deep.equal(expected);
   });
 
   it('as string', function() {
