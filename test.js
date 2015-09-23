@@ -268,4 +268,43 @@ describe('ModelRenderer', function() {
       expect(renderer.toString()).to.equal(expected);
     });
   });
+
+  describe('Model with computed attributes', function() {
+    var model;
+    var renderer;
+
+    beforeEach('Create renderer', function() {
+      model = modella(modelName)
+        .attr('a', { get: function() { return 42; } })
+        .attr('b', { get: 'not computed' });
+      renderer = new ModelRenderer(model);
+    });
+
+    it('as metadata', function() {
+      var expected = {
+        modelName: modelName,
+        attrs: {
+          a: {
+            computed: true,
+            optional: false
+          },
+          b: {
+            computed: false,
+            optional: false
+          }
+        }
+      };
+      expect(renderer.metadata).to.deep.equal(expected);
+    });
+
+    it('as string', function() {
+      var expected = (
+          modelName + ':\n' +
+          '- a:\n' +
+          '  - computed\n' +
+          '- b'
+          );
+      expect(renderer.toString()).to.equal(expected);
+    });
+  });
 });
