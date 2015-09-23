@@ -215,4 +215,57 @@ describe('ModelRenderer', function() {
       expect(renderer.toString()).to.equal(expected);
     });
   });
+
+  describe('Model with optional attributes', function() {
+    var model;
+    var renderer;
+
+    beforeEach('Create renderer', function() {
+      model = modella(modelName)
+        .attr('a', {'required': false})
+        .attr('b', {'optional': true})
+        .attr('c', {'required': true, 'optional': true})
+        .attr('d', {'required': false, 'optional': false});
+      renderer = new ModelRenderer(model);
+    });
+
+    it('as metadata', function() {
+      var expected = {
+        modelName: modelName,
+        attrs: {
+          a: {
+            computed: false,
+            optional: true
+          },
+          b: {
+            computed: false,
+            optional: true,
+          },
+          c: {
+            computed: false,
+            optional: false,
+          },
+          d: {
+            computed: false,
+            optional: true,
+          }
+        }
+      };
+      expect(renderer.metadata).to.deep.equal(expected);
+    });
+
+    it('as string', function() {
+      var expected = (
+          modelName + ':\n' +
+          '- a:\n' +
+          '  - optional\n' +
+          '- b:\n' +
+          '  - optional\n' +
+          '- c\n' +
+          '- d:\n' +
+          '  - optional'
+          );
+      expect(renderer.toString()).to.equal(expected);
+    });
+  });
 });
