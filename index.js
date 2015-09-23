@@ -1,14 +1,30 @@
+/**
+ * Generate documentation from modella models
+ * @module modella-render-docs
+ */
 /* globals Set */
 'use strict';
 
 var R = require('ramda');
 var isEmptyObj = R.pipe(R.keys, R.isEmpty);
 
+/**
+ * Convert model metadata to different formats
+ * @constructor
+ * @param {object} model - Modella model
+ * @property metadata {object} - Model metadata
+ */
 function ModelRenderer(model) {
   this.modelName = model.modelName;
   this.attrs = model.attrs;
 }
 
+/**
+ * Convert model attribute to string
+ * @param {string} attrName - Attribute name
+ * @param {object} opts - Attribute options
+ * @returns {string} Attribute string representation
+ */
 function attrToString(attrName, opts) {
   var attrOutput = '- ' + attrName;
   var lines = R.map(R.apply(optToString), R.toPairs(opts));
@@ -23,6 +39,12 @@ function attrToString(attrName, opts) {
   return attrOutput;
 }
 
+/**
+ * Convert attribute option to string
+ * @param {string} opt - Option name
+ * @param {object} value - Option value
+ * @returns {string} Option string representation
+ */
 function optToString(opt, value) {
   if (opt === 'primaryKey') {
     return 'primaryKey';
@@ -41,10 +63,21 @@ Object.defineProperty(ModelRenderer.prototype, 'metadata', {
   enumerable: true
 });
 
+/**
+ * Convert model metadata to JSON
+ * @method
+ * @returns {string} Model metadata converted to JSON
+ */
 ModelRenderer.prototype.toJSON = function toJSON() {
   return JSON.stringify(this.metadata);
 };
 
+
+/**
+ * Convert model metadata to string
+ * @method
+ * @returns {string} Model metadata converted to string
+ */
 ModelRenderer.prototype.toString = function toString() {
     var output = this.modelName;
 

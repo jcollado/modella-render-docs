@@ -1,5 +1,8 @@
 node_modules
 
+# documentation output directory
+out
+
 # coverage report directory
 coverage
 
