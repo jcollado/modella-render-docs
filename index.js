@@ -33,6 +33,7 @@ function normalizeOpts(opts) {
       (R.has('required', opts) && opts.required === false) ||
       (R.has('optional', opts) && opts.optional === true)
       );
+  normalizedOpts.computed = R.has('get') && typeof opts.get === 'function';
   return normalizedOpts;
 }
 
@@ -65,7 +66,7 @@ function attrToString(attrName, opts) {
  * @returns {string} Option string representation
  */
 function optToString(opt, value) {
-  if (typeof(value) === 'boolean' && value) {
+  if (typeof value  === 'boolean' && value) {
     return opt;
   }
   return opt + ': ' + value;

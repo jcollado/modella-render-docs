@@ -71,9 +71,18 @@ describe('ModelRenderer', function() {
       var expected = {
         modelName: modelName,
         attrs: {
-          a: { optional: false },
-          b: { optional: false },
-          c: { optional: false }
+          a: {
+            computed: false,
+            optional: false
+          },
+          b: {
+            computed: false,
+            optional: false
+          },
+          c: {
+            computed: false,
+            optional: false
+          }
         }
       };
       expect(renderer.metadata).to.deep.equal(expected);
@@ -104,6 +113,7 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           id: {
+            computed: false,
             optional: false,
             primaryKey: true
           },
@@ -138,10 +148,12 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           a: {
+            computed: false,
             description: 'attribute a',
             optional: false
           },
           b: {
+            computed: false,
             description: 'attribute b',
             optional: false
           }
@@ -178,10 +190,12 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           a: {
+            computed: false,
             optional: false,
             type: 'string'
           },
           b: {
+            computed: false,
             optional: false,
             type: 'number'
           }
