@@ -61,10 +61,10 @@ describe('ModelRenderer', function() {
 
     beforeEach('Create renderer', function() {
       model = modella(modelName);
-      renderer = new ModelRenderer(model);
       attributes.forEach(function(attr) {
         model.attr(attr);
       });
+      renderer = new ModelRenderer(model);
     });
 
     it('as metadata', function() {
