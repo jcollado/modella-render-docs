@@ -71,9 +71,9 @@ describe('ModelRenderer', function() {
       var expected = {
         modelName: modelName,
         attrs: {
-          a: {},
-          b: {},
-          c: {}
+          a: { optional: false },
+          b: { optional: false },
+          c: { optional: false }
         }
       };
       expect(renderer.metadata).to.deep.equal(expected);
@@ -104,6 +104,7 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           id: {
+            optional: false,
             primaryKey: true
           },
         }
@@ -137,10 +138,12 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           a: {
-            description: 'attribute a'
+            description: 'attribute a',
+            optional: false
           },
           b: {
-            description: 'attribute b'
+            description: 'attribute b',
+            optional: false
           }
         }
       };
@@ -175,9 +178,11 @@ describe('ModelRenderer', function() {
         modelName: modelName,
         attrs: {
           a: {
+            optional: false,
             type: 'string'
           },
           b: {
+            optional: false,
             type: 'number'
           }
         }

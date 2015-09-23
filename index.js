@@ -7,6 +7,7 @@
 
 var R = require('ramda');
 var isEmptyObj = R.pipe(R.keys, R.isEmpty);
+var defaultOptNames = ['primaryKey', 'description', 'type'];
 
 /**
  * Convert model metadata to different formats
@@ -29,15 +30,18 @@ function ModelRenderer(model) {
 function normalizeOpts(opts) {
   var normalizedOpts = {};
 
-  normalizeOpts.knownOptions.forEach(function(optName) {
+  defaultOptNames.forEach(function(optName) {
     if (R.has(optName, opts)) {
       normalizedOpts[optName] = opts[optName];
     }
   });
 
+  normalizedOpts.optional = (
+      (R.has('required', opts) && opts.required === false) ||
+      (R.has('optional', opts) && opts.optional === true)
+      );
   return normalizedOpts;
 }
-normalizeOpts.knownOptions = ['primaryKey', 'description', 'type'];
 
 /**
  * Convert model attribute to string
@@ -47,7 +51,9 @@ normalizeOpts.knownOptions = ['primaryKey', 'description', 'type'];
  */
 function attrToString(attrName, opts) {
   var attrOutput = '- ' + attrName;
-  var lines = R.map(R.apply(optToString), R.toPairs(opts));
+
+  var knownOpts = R.pick(defaultOptNames, opts);
+  var lines = R.map(R.apply(optToString), R.toPairs(knownOpts));
   var indentedLines = R.map(function(line) {
     return '  - ' + line;
   }, lines);
@@ -66,14 +72,11 @@ function attrToString(attrName, opts) {
  * @returns {string} Option string representation
  */
 function optToString(opt, value) {
-  if (optToString.strOptions.has(opt)) {
-    if (typeof(value) == 'boolean') {
-      return opt;
-    }
-    return opt + ': ' + value;
+  if (typeof(value) === 'boolean' && value) {
+    return opt;
   }
+  return opt + ': ' + value;
 }
-optToString.strOptions = new Set(['primaryKey', 'description', 'type']);
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {
   get: function () {
