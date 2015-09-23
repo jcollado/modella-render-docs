@@ -28,14 +28,18 @@ function ModelRenderer(model) {
  * @returns {object} - Normalized options
  */
 function normalizeOpts(opts) {
-  var normalizedOpts = R.pick(defaultOptNames, opts);
-  normalizedOpts.optional = (
-      (R.has('required', opts) && opts.required === false) ||
-      (R.has('optional', opts) && opts.optional === true)
-      );
+  var normalizedOpts = R.pick(normalizeOpts.defaultOptNames, opts);
+  if (R.has('required', opts)) {
+    normalizedOpts.optional = opts.required === false;
+  } else if (R.has('optional', opts)) {
+    normalizedOpts.optional = opts.optional === true;
+  } else {
+    normalizedOpts.optional = false;
+  }
   normalizedOpts.computed = R.has('get') && typeof opts.get === 'function';
   return normalizedOpts;
 }
+normalizeOpts.defaultOptNames = ['primaryKey', 'description', 'type'];
 
 /**
  * Convert model attribute to string
