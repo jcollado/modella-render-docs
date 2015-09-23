@@ -13,6 +13,8 @@ var isEmptyObj = R.pipe(R.keys, R.isEmpty);
  * @constructor
  * @param {object} model - Modella model
  * @property metadata {object} - Model metadata
+ * @property modelName {string} - Model name
+ * @property attrs {object} - Model attributes
  */
 function ModelRenderer(model) {
   this.modelName = model.modelName;
