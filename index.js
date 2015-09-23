@@ -7,7 +7,6 @@
 
 var R = require('ramda');
 var isEmptyObj = R.pipe(R.keys, R.isEmpty);
-var defaultOptNames = ['primaryKey', 'description', 'type'];
 
 /**
  * Convert model metadata to different formats
@@ -62,6 +61,8 @@ function attrToString(attrName, opts) {
   }
   return attrOutput;
 }
+attrToString.defaultOptNames = new Set([
+    'primaryKey', 'description', 'type', 'optional', 'computed']);
 
 /**
  * Convert attribute option to string
