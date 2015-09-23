@@ -18,8 +18,21 @@ var isEmptyObj = R.pipe(R.keys, R.isEmpty);
  */
 function ModelRenderer(model) {
   this.modelName = model.modelName;
-  this.attrs = model.attrs;
+  this.attrs = R.mapObj(normalizeOpts, model.attrs);
 }
+
+function normalizeOpts(opts) {
+  var normalizedOpts = {};
+
+  normalizeOpts.knownOptions.forEach(function(optName) {
+    if (R.has(optName, opts)) {
+      normalizedOpts[optName] = opts[optName];
+    }
+  });
+
+  return normalizedOpts;
+}
+normalizeOpts.knownOptions = ['primaryKey', 'description', 'type'];
 
 /**
  * Convert model attribute to string
@@ -48,14 +61,14 @@ function attrToString(attrName, opts) {
  * @returns {string} Option string representation
  */
 function optToString(opt, value) {
-  if (optToString.knownOptions.has(opt)) {
+  if (optToString.strOptions.has(opt)) {
     if (typeof(value) == 'boolean') {
       return opt;
     }
     return opt + ': ' + value;
   }
 }
-optToString.knownOptions = new Set(['primaryKey', 'description', 'type']);
+optToString.strOptions = new Set(['primaryKey', 'description', 'type']);
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {
   get: function () {
