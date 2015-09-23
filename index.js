@@ -21,6 +21,11 @@ function ModelRenderer(model) {
   this.attrs = R.mapObj(normalizeOpts, model.attrs);
 }
 
+/**
+ * Normalize renderer options based on model ones
+ * @param {object} opts - Model options
+ * @returns {object} - Normalized options
+ */
 function normalizeOpts(opts) {
   var normalizedOpts = {};
 
