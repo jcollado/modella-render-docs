@@ -10,10 +10,14 @@ function ModelRenderer(model) {
 
 function attrToString(attrName, opts) {
   var attrOutput = '- ' + attrName;
-  var optsOutput = R.join(', ', R.map(R.apply(optToString), R.toPairs(opts)));
+  var lines = R.map(R.apply(optToString), R.toPairs(opts));
+  var indentedLines = R.map(function(line) {
+    return '  - ' + line;
+  }, lines);
+  var optsOutput = R.join('\n', indentedLines);
 
   if (optsOutput) {
-    attrOutput += ' (' + optsOutput + ')';
+    attrOutput += ':\n' + optsOutput;
   }
   return attrOutput;
 }

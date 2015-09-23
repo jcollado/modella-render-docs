@@ -80,7 +80,12 @@ describe('ModelRenderer', function() {
     });
 
     it('as string', function() {
-      var expected = modelName + ':\n- a\n- b\n- c';
+      var expected = (
+        modelName + ':\n' +
+        '- a\n' +
+        '- b\n' +
+        '- c'
+      );
       expect(renderer.toString()).to.equal(expected);
     });
   });
@@ -107,7 +112,11 @@ describe('ModelRenderer', function() {
     });
 
     it('as string', function() {
-      var expected = modelName + ':\n- id (primaryKey)';
+      var expected = (
+          modelName + ':\n' +
+          '- id:\n' +
+          '  - primaryKey'
+          );
       expect(renderer.toString()).to.equal(expected);
     });
   });
@@ -140,8 +149,11 @@ describe('ModelRenderer', function() {
 
     it('as string', function() {
       var expected = (
-          modelName +
-          ':\n- a (description: attribute a)\n- b (description: attribute b)'
+          modelName + ':\n' +
+          '- a:\n' +
+          '  - description: attribute a\n' +
+          '- b:\n' +
+          '  - description: attribute b'
           );
       expect(renderer.toString()).to.equal(expected);
     });
@@ -175,8 +187,11 @@ describe('ModelRenderer', function() {
 
     it('as string', function() {
       var expected = (
-          modelName +
-          ':\n- a (type: string)\n- b (type: number)'
+          modelName + ':\n' +
+          '- a:\n' +
+          '  - type: string\n' +
+          '- b:\n' +
+          '  - type: number'
           );
       expect(renderer.toString()).to.equal(expected);
     });
