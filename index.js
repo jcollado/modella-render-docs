@@ -28,14 +28,7 @@ function ModelRenderer(model) {
  * @returns {object} - Normalized options
  */
 function normalizeOpts(opts) {
-  var normalizedOpts = {};
-
-  defaultOptNames.forEach(function(optName) {
-    if (R.has(optName, opts)) {
-      normalizedOpts[optName] = opts[optName];
-    }
-  });
-
+  var normalizedOpts = R.pick(defaultOptNames, opts);
   normalizedOpts.optional = (
       (R.has('required', opts) && opts.required === false) ||
       (R.has('optional', opts) && opts.optional === true)
