@@ -49,7 +49,11 @@ normalizeOpts.defaultOptNames = ['primaryKey', 'description', 'type'];
 function attrToString(attrName, opts) {
   var attrOutput = '- ' + attrName;
 
-  var knownOpts = R.pick(defaultOptNames, opts);
+  var knownOpts = R.pickBy(function(value, key) {
+    return (
+        attrToString.defaultOptNames.has(key) &&
+        (typeof value !== 'boolean' || value));
+  }, opts);
   var lines = R.map(R.apply(optToString), R.toPairs(knownOpts));
   var indentedLines = R.map(function(line) {
     return '  - ' + line;
