@@ -1,3 +1,4 @@
+/* globals Set */
 'use strict';
 
 var R = require('ramda');
@@ -26,13 +27,12 @@ function optToString(opt, value) {
   if (opt === 'primaryKey') {
     return 'primaryKey';
   }
-  if (opt === 'description') {
-    return 'description: ' + value;
-  }
-  if (opt === 'type') {
-    return 'type: ' + value;
+
+  if (optToString.knownOptions.has(opt)) {
+    return opt + ': ' + value;
   }
 }
+optToString.knownOptions = new Set(['description', 'type']);
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {
   get: function () {
