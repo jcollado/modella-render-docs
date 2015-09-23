@@ -146,4 +146,39 @@ describe('ModelRenderer', function() {
       expect(renderer.toString()).to.equal(expected);
     });
   });
+
+  describe('Model with attributes and type', function() {
+    var model;
+    var renderer;
+
+    beforeEach('Create renderer', function() {
+      model = modella(modelName)
+        .attr('a', {'type': 'string'})
+        .attr('b', {'type': 'number'});
+      renderer = new ModelRenderer(model);
+    });
+
+    it('as metadata', function() {
+      var expected = {
+        modelName: modelName,
+        attrs: {
+          a: {
+            type: 'string'
+          },
+          b: {
+            type: 'number'
+          }
+        }
+      };
+      expect(renderer.metadata).to.deep.equal(expected);
+    });
+
+    it('as string', function() {
+      var expected = (
+          modelName +
+          ':\n- a (type: string)\n- b (type: number)'
+          );
+      expect(renderer.toString()).to.equal(expected);
+    });
+  });
 });

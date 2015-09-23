@@ -25,6 +25,9 @@ function optToString(opt, value) {
   if (opt === 'description') {
     return 'description: ' + value;
   }
+  if (opt === 'type') {
+    return 'type: ' + value;
+  }
 }
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {
