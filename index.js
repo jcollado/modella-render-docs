@@ -48,15 +48,14 @@ function attrToString(attrName, opts) {
  * @returns {string} Option string representation
  */
 function optToString(opt, value) {
-  if (opt === 'primaryKey') {
-    return 'primaryKey';
-  }
-
   if (optToString.knownOptions.has(opt)) {
+    if (typeof(value) == 'boolean') {
+      return opt;
+    }
     return opt + ': ' + value;
   }
 }
-optToString.knownOptions = new Set(['description', 'type']);
+optToString.knownOptions = new Set(['primaryKey', 'description', 'type']);
 
 Object.defineProperty(ModelRenderer.prototype, 'metadata', {
   get: function () {
