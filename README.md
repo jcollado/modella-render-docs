@@ -1,7 +1,6 @@
 # modella-render-docs
 
-[![NPM](https://nodei.co/npm/modella-render-docs.png)](https://nodei.co/npm/modella-render-docs/)
-
+[![npm](https://img.shields.io/npm/v/modella-render-docs.svg)](https://www.npmjs.com/package/modella-render-docs)
 [![MIT license](https://img.shields.io/npm/l/modella-render-docs.svg)](https://github.com/jcollado/modella-render-docs/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/jcollado/modella-render-docs.svg)](https://travis-ci.org/jcollado/modella-render-docs)
 [![Coverage Status](https://coveralls.io/repos/jcollado/modella-render-docs/badge.svg?branch=master&service=github)](https://coveralls.io/github/jcollado/modella-render-docs?branch=master)
